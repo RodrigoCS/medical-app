@@ -18,17 +18,23 @@ class Diagnosis extends React.Component {
   render() {
     return (
       <Animatable.View
+        useNativeDriver
         animation={'fadeIn'}
-        duration={2000}
+        duration={1500}
+        delay={100}
         style={styles.container}
       >
-        <ScrollView style={{ marginBottom: 120 }}>
+        <ScrollView
+          style={{ marginBottom: 120 }}
+          contentContainerStyle={{ alignItems: 'center' }}
+        >
           <Header />
           <Text style={{ color: Colors.DARK, fontSize: 32, fontWeight: '900' }}>
             Diagnosis
             <Text
               style={{ color: Colors.PRIMARY, fontSize: 32, fontWeight: '900' }}
             >
+              {' '}
               78%
             </Text>
           </Text>
@@ -38,7 +44,14 @@ class Diagnosis extends React.Component {
             personas, se siente un dolor pulsátil únicamente en un lado de la
             cabeza.
           </Text>
-          <Text style={{ fontSize: 24, color: Colors.DARK, fontWeight: '900' }}>
+          <Text
+            style={{
+              fontSize: 24,
+              color: Colors.DARK,
+              fontWeight: '900',
+              marginTop: 24
+            }}
+          >
             Causas
           </Text>
           <Text>
@@ -55,7 +68,12 @@ class Diagnosis extends React.Component {
             embarazadas
           </Text>
         </ScrollView>
-        <NavBar onLeft={this.goBack} onNext={this.goNext} nextIcon={'medkit'} />
+        <NavBar
+          onLeft={this.goBack}
+          onNext={this.goNext}
+          nextIcon={'medkit'}
+          canContinue
+        />
       </Animatable.View>
     )
   }

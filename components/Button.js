@@ -31,9 +31,13 @@ class Button extends React.Component {
   }
 
   render() {
-    const { icon, onPress, style } = this.props
+    const { icon, onPress, style, disabled } = this.props
     return (
-      <Ripple rippleContainerBorderRadius={100} onPress={onPress}>
+      <Ripple
+        disabled={disabled}
+        rippleContainerBorderRadius={100}
+        onPress={onPress}
+      >
         <LinearGradient
           colors={[Colors.PRIMARY, Colors.PRIMARY_LIGHT, Colors.SECONDARY]}
           style={[
@@ -42,7 +46,8 @@ class Button extends React.Component {
               paddingVertical: 16,
               borderRadius: 100,
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              opacity: disabled ? 0.2 : 1
             },
             style
           ]}

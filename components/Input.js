@@ -9,7 +9,17 @@ class Input extends React.Component {
     placeholder: 'Placeholder'
   }
   render() {
-    const { children, onSubmit, style, placeholder } = this.props
+    const {
+      children,
+      onSubmit,
+      style,
+      placeholder,
+      onChange,
+      value,
+      inputRef,
+      onBlur,
+      onFocus
+    } = this.props
     return (
       <View style={styles.container}>
         <View
@@ -17,7 +27,16 @@ class Input extends React.Component {
             width: '100%'
           }}
         >
-          <TextInput style={styles.textInput} placeholder={placeholder} />
+          <TextInput
+            ref={r => inputRef(r)}
+            value={value}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            style={styles.textInput}
+            placeholder={placeholder}
+            onSubmitEditing={onSubmit}
+          />
           <View style={styles.absoluteContainer}>
             <Button icon={'plus'} onPress={onSubmit} style={styles.button} />
           </View>

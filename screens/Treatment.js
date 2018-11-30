@@ -13,24 +13,32 @@ class Treatment extends React.Component {
     this.props.navigation.go('Diagnosis')
   }
   goNext = () => {
-    this.props.navigation.go('Error')
+    this.props.navigation.go('Home')
+    this.props.consultation.clear()
   }
   render() {
     return (
       <Animatable.View
+        useNativeDriver
         animation={'fadeIn'}
-        duration={2000}
+        duration={1500}
+        delay={100}
         style={styles.container}
       >
-        <ScrollView style={{ marginBottom: 120 }}>
+        <ScrollView
+          style={{ marginBottom: 120 }}
+          contentContainerStyle={{ alignItems: 'center' }}
+        >
           <Header />
-          <Text style={{ color: Colors.DARK, fontSize: 32, fontWeight: '900' }}>
-            Diagnosis
-            <Text
-              style={{ color: Colors.PRIMARY, fontSize: 32, fontWeight: '900' }}
-            >
-              78%
-            </Text>
+          <Text
+            style={{
+              fontSize: 24,
+              color: Colors.DARK,
+              fontWeight: '900',
+              marginTop: 24
+            }}
+          >
+            Tratamiento
           </Text>
           <Text>
             Es un tipo de dolor de cabeza que puede ocurrir con síntomas como
@@ -38,8 +46,15 @@ class Treatment extends React.Component {
             personas, se siente un dolor pulsátil únicamente en un lado de la
             cabeza.
           </Text>
-          <Text style={{ fontSize: 24, color: Colors.DARK, fontWeight: '900' }}>
-            Causas
+          <Text
+            style={{
+              fontSize: 24,
+              color: Colors.DARK,
+              fontWeight: '900',
+              marginTop: 24
+            }}
+          >
+            Pruebas y exámenes
           </Text>
           <Text>
             Una migraña es causada por actividad cerebral anormal, lo cual se
@@ -55,7 +70,12 @@ class Treatment extends React.Component {
             embarazadas
           </Text>
         </ScrollView>
-        <NavBar onLeft={this.goBack} onNext={this.goNext} nextIcon={'medkit'} />
+        <NavBar
+          onLeft={this.goBack}
+          onNext={this.goNext}
+          nextIcon={'sign-out'}
+          canContinue
+        />
       </Animatable.View>
     )
   }
@@ -69,4 +89,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default inject('navigation')(observer(Treatment))
+export default inject('navigation', 'consultation')(observer(Treatment))

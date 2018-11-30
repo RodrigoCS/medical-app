@@ -12,7 +12,7 @@ class List extends React.Component {
     return (
       <Ripple
         onLongPress={() => {
-          this.removeItem(item)
+          this.props.onRemoveItem(item)
         }}
         style={{ paddingVertical: 8 }}
       >

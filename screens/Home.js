@@ -13,8 +13,10 @@ class Home extends React.Component {
   render() {
     return (
       <Animatable.View
+        useNativeDriver
         animation={'fadeIn'}
-        duration={2000}
+        duration={1500}
+        delay={100}
         style={styles.container}
       >
         <Header />

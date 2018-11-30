@@ -8,11 +8,7 @@ const Header = () => {
         marginBottom: 40
       }}
     >
-      <Image
-        animation={'fadeIn'}
-        source={require('@assets/header.png')}
-        cache={'force-cache'}
-      />
+      <Image source={require('@assets/header.png')} cache={'force-cache'} />
     </View>
   )
 }

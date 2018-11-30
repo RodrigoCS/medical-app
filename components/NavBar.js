@@ -9,7 +9,7 @@ import { FontAwesome } from '@expo/vector-icons'
 
 class NavBar extends React.Component {
   render() {
-    const { onLeft, onRight, onNext, nextIcon } = this.props
+    const { onLeft, onRight, onNext, nextIcon, canContinue } = this.props
 
     return (
       <View style={styles.container}>
@@ -27,6 +27,7 @@ class NavBar extends React.Component {
         <View style={styles.center}>
           <View style={styles.absoluteButton}>
             <Button
+              disabled={!canContinue}
               onPress={onNext}
               iconSize={64}
               iconStyle={{ top: 32 }}

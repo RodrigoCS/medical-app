@@ -1,7 +1,7 @@
 import { decorate, observable, action } from 'mobx'
 
 class Navigation {
-  currentScene = 'Signs'
+  currentScene = 'Home'
 
   go = scene => {
     console.log(`Navigation.go(${scene})`)
