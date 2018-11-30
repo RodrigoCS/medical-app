@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Ripple from 'react-native-material-ripple'
 import { _Text } from './Text'
 import { Colors } from '@strings'
@@ -9,11 +9,25 @@ import * as Animatable from 'react-native-animatable'
 import { observer, inject } from 'mobx-react'
 
 class AutoCompleteBox extends React.Component {
+  onPressItem = item => {
+    console.log('onPressItem', item)
+    this.props.autocomplete.setCurrentText(item.name)
+  }
   renderItem = ({ item }) => {
+    console.log('renderItem', { item })
     return (
-      <View>
-        <_Text>xd</_Text>
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          this.onPressItem(item)
+        }}
+        style={{
+          paddingVertical: 16,
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: Colors.LIGHTER
+        }}
+      >
+        <_Text>{item.name}</_Text>
+      </TouchableOpacity>
     )
   }
 
@@ -42,8 +56,9 @@ class AutoCompleteBox extends React.Component {
 
         <FlatList
           renderItem={this.renderItem}
-          data={items}
+          data={autocomplete.suggestions}
           keyExtractor={this.keyExtractor}
+          keyboardShouldPersistTaps={'always'}
         />
       </Animatable.View>
     )

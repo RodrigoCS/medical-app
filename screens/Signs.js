@@ -11,10 +11,14 @@ class Signs extends React.Component {
     inputText: '',
     isInputFocused: false
   }
-  addSign = () => {
-    this.props.consultation.addSign(this.props.autocomplete.currentText)
-    this.props.autocomplete.clearCurrentText()
-    this.input.blur()
+  addSign = async () => {
+    let added = await this.props.consultation.addSign(
+      this.props.autocomplete.currentText
+    )
+    if (added) {
+      this.props.autocomplete.clearCurrentText()
+      this.input.blur()
+    }
   }
   removeSign = sign => {
     console.log('removeSign', sign)
@@ -25,9 +29,10 @@ class Signs extends React.Component {
   }
   goNext = () => {
     this.props.navigation.go('Symptoms')
+    this.props.autocomplete.clearSuggestions()
   }
   onChangeInput = ({ nativeEvent: { text } }) => {
-    this.props.autocomplete.onChangeText(text)
+    this.props.autocomplete.onChangeText(text, 'signs')
     // this.setState(() => ({
     //   inputText: text
     // }))
