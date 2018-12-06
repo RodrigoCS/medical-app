@@ -11,6 +11,6 @@ const Colors = {
   TRANSPARENT: 'rgba(0,0,0,0)'
 }
 
-const API_URL = 'http://192.168.15.5:3000/api'
+const API_URL = 'http://172.20.10.3:3000/api'
 
 export { Colors, API_URL }

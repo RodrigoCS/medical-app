@@ -4,6 +4,28 @@ import { API_URL } from '@strings/'
 class Consultation {
   signs = []
   symptoms = []
+  finalDiagnostic = null
+
+  getDiagnosis = async () => {
+    let signs = toJS(this.signs).map(s => s.id)
+    let symptoms = toJS(this.symptoms).map(s => s.id)
+    let url = `${API_URL}/diagnostics/expert/diagnostic`
+    let { _bodyInit: results } = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        signs,
+        symptoms
+      })
+    })
+    results = JSON.parse(results)
+    console.log('getDiagnosiess', { url, results })
+    this.finalDiagnostic = results[0]
+    return results
+  }
 
   addSign = async sign => {
     console.log('addSign', sign)
@@ -61,6 +83,7 @@ class Consultation {
   clear = () => {
     this.signs = []
     this.symptoms = []
+    this.finalDiagnostic = null
   }
 }
 
@@ -68,5 +91,7 @@ export default decorate(Consultation, {
   signs: observable,
   symptoms: observable,
   signList: computed,
-  clear: action
+  clear: action,
+  getDiagnosis: action,
+  finalDiagnostic: observable
 })

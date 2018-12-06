@@ -27,7 +27,8 @@ class Symptoms extends React.Component {
   goBack = () => {
     this.props.navigation.go('Signs')
   }
-  goNext = () => {
+  goNext = async () => {
+    await this.props.consultation.getDiagnosis()
     this.props.navigation.go('Diagnosis')
     this.props.autocomplete.clearSuggestions()
   }

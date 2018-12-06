@@ -17,6 +17,9 @@ class Treatment extends React.Component {
     this.props.consultation.clear()
   }
   render() {
+    const {
+      consultation: { finalDiagnostic }
+    } = this.props
     return (
       <Animatable.View
         useNativeDriver
@@ -40,12 +43,7 @@ class Treatment extends React.Component {
           >
             Tratamiento
           </Text>
-          <Text>
-            Es un tipo de dolor de cabeza que puede ocurrir con síntomas como
-            náuseas, vómitos o sensibilidad a la luz y al sonido. En muchas
-            personas, se siente un dolor pulsátil únicamente en un lado de la
-            cabeza.
-          </Text>
+          <Text>{finalDiagnostic && finalDiagnostic.treatment}</Text>
           <Text
             style={{
               fontSize: 24,
@@ -56,19 +54,7 @@ class Treatment extends React.Component {
           >
             Pruebas y exámenes
           </Text>
-          <Text>
-            Una migraña es causada por actividad cerebral anormal, lo cual se
-            puede desencadenar por muchos factores. Sin embargo, la cadena
-            exacta de hechos sigue sin aclararse. La mayoría de los expertos
-            médicos cree que el ataque comienza en el cerebro e involucra vías
-            nerviosas y químicos. Los cambios afectan el flujo sanguíneo en el
-            cerebro y tejidos circundantes. Las migrañas tienden a aparecer
-            primero entre los 10 y los 45 años. Algunas veces, comienzan antes o
-            más tarde en la vida. Las migrañas pueden ser hereditarias y se
-            presentan con más frecuencia en las mujeres que en los hombres.
-            Algunas mujeres, pero no todas, sufren menos migrañas cuando están
-            embarazadas
-          </Text>
+          <Text>{finalDiagnostic && finalDiagnostic.studies}</Text>
         </ScrollView>
         <NavBar
           onLeft={this.goBack}
